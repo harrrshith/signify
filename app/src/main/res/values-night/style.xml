@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MainText" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">32sp</item>
+        <item name="android:letterSpacing">.2</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+</resources>
