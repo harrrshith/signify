@@ -4,7 +4,4 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
-    <style name="Theme.Signify" parent="Base.Theme.Signify">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-    </style>
 </resources>
