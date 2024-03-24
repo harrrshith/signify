@@ -1,5 +1,6 @@
 package com.harrrshith.signify
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -7,6 +8,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.MotionEvent
 import android.view.View
 
@@ -31,6 +33,7 @@ class SignatureView(context: Context, attributeSet: AttributeSet): View(context,
         drawPath = CustomPath(mColor, brushSize)
         drawPaint!!.apply {
             color = mColor
+            style = Paint.Style.STROKE
             strokeJoin = Paint.Join.ROUND
             strokeCap = Paint.Cap.ROUND
         }
@@ -58,6 +61,7 @@ class SignatureView(context: Context, attributeSet: AttributeSet): View(context,
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         val touchX = event?.x
         val touchY = event?.y
@@ -71,7 +75,6 @@ class SignatureView(context: Context, attributeSet: AttributeSet): View(context,
                 }
             }
             MotionEvent.ACTION_MOVE -> {
-                //mDrawPath!!.lineTo(touchX!!, touchY!!)
                 if(touchX != null && touchY != null){
                     drawPath!!.lineTo(touchX, touchY)
                 }
@@ -85,6 +88,15 @@ class SignatureView(context: Context, attributeSet: AttributeSet): View(context,
         }
         invalidate()
         return true
+    }
+
+    fun setBrushSize(size: Float){
+        brushSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, size, resources.displayMetrics)
+    }
+
+    fun setPenColor(newColor: String){
+        mColor = Color.parseColor(newColor)
+        drawPaint!!.color = mColor
     }
 
     internal inner class CustomPath(var color: Int, var brushThickness: Float): Path()
