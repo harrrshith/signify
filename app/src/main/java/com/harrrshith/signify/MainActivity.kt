@@ -2,6 +2,10 @@ package com.harrrshith.signify
 
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
+import android.view.View
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -37,10 +41,21 @@ class MainActivity : AppCompatActivity() {
         binding.avdButton.setOnClickListener {
             isClicked = !isClicked
             binding.avdButton.apply {
-                avdBtn = if(isClicked){
-                    binding.avdButton.setAnimateResource(R.drawable.animated_vector_button_from)
+                if(isClicked){
+                    binding.signifyOptions.also {view->
+                        view.animate().translationY(0f)
+                        view.visibility = View.VISIBLE
+                    }
+                    avdBtn = binding.avdButton.setAnimateResource(R.drawable.animated_vector_button_from)
                 }else{
-                    binding.avdButton.setAnimateResource(R.drawable.animated_vector_button_to)
+                    binding.signifyOptions.also {view ->
+                        view.animate().translationY(200f)
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            view.visibility = View.GONE
+                        }, 200)
+                    }
+                    avdBtn = binding.avdButton.setAnimateResource(R.drawable.animated_vector_button_to)
+
                 }
             }
             avdBtn.start()
@@ -53,6 +68,8 @@ class MainActivity : AppCompatActivity() {
             return background as AnimatedVectorDrawable
         }
     }
-
-
+    private fun Int.thisToFloat(): Float {
+        val scale = resources.displayMetrics.density
+        return this * scale
+    }
 }

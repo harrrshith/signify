@@ -31,21 +31,60 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16.dp"
-        android:layout_marginEnd="32.dp"
-        style="@style/rounded_background"
-        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <ImageButton
-            android:id="@+id/avd_button"
+        <LinearLayout
+            android:id="@+id/avd_button_background"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:contentDescription="@string/app_name"/>
+            style="@style/rounded_background"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <ImageButton
+                android:id="@+id/avd_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:contentDescription="@string/app_name"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@color/primary_accent"
+            android:id="@+id/signify_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:translationY="80dp"
+            android:visibility="gone">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="?android:attr/buttonBarButtonStyle"
+                android:text="One"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="?android:attr/buttonBarButtonStyle"
+                android:text="Two"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="?android:attr/buttonBarButtonStyle"
+                android:text="Three"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
