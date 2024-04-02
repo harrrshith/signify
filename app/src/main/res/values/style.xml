@@ -10,4 +10,11 @@
         <item name="android:background">@drawable/rounded_background</item>
         <item name="android:strokeColor">@color/primary</item>
     </style>
+
+    <style name="rounded_rect">
+        <item name="android:background">@drawable/rounded_rectangle</item>
+        <item name="background">@drawable/rounded_rectangle</item>
+        <item name="elevation">20dp</item>
+        <item name="android:elevation">20dp</item>
+    </style>
 </resources>
