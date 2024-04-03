@@ -70,16 +70,16 @@
             android:visibility="gone"
             style="@style/rounded_rect">
 
-            <include android:id="@+id/line_weight_toolbar"
-                layout="@layout/line_weight"
-                android:visibility="visible"/>
+            <include
+                android:id="@+id/line_weight_toolbar_wrapper"
+                layout="@layout/line_weight"/>
 
             <LinearLayout
                 android:id="@+id/signify_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:gravity="center">
 
                 <View
@@ -88,6 +88,7 @@
                     style="@style/rounded_background"/>
 
                 <View
+                    android:id="@+id/line_weight_toolbar_btn"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:background="@drawable/ic_line_weight"

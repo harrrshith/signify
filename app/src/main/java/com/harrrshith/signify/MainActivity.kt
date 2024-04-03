@@ -2,7 +2,9 @@ package com.harrrshith.signify
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.app.ActionBar.LayoutParams
 import android.graphics.drawable.AnimatedVectorDrawable
+import android.icu.text.ListFormatter.Width
 import android.opengl.Visibility
 import android.os.Bundle
 import android.os.Handler
@@ -40,7 +42,9 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        //everytime the isClicked variable becomes false that is when I close the toolbar I need to manually make all the animations to reset to its original position.
         initialScreenSetup()
+        setOnSignifyToolBarListeners()
     }
     private fun initialScreenSetup(){
         //initial screen contents are set here
@@ -88,6 +92,33 @@ class MainActivity : AppCompatActivity() {
                 }
                 avdBtn = binding.avdButton.setAnimateResource(R.drawable.animated_vector_button_to)
             }
+        }
+    }
+
+    private fun setOnSignifyToolBarListeners(){
+        binding.lineWeightToolbarBtn.setOnClickListener {
+            binding.signifyToolbar.visibility = View.GONE
+            binding.lineWeightToolbarWrapper.lineWeightToolbar.also {
+                it.visibility = View.VISIBLE
+                it.layoutParams.width = LayoutParams.MATCH_PARENT
+                it.animate()
+                    .setDuration(200)
+                    .alpha(1f)
+                    .translationX(0f)
+                    .setListener(object : AnimatorListenerAdapter(){
+                        override fun onAnimationEnd(animation: Animator, isReverse: Boolean) {
+                            super.onAnimationEnd(animation, false)
+                        }
+                    })
+            }
+            onLineHeightOptionsClicked()
+        }
+    }
+
+    private fun onLineHeightOptionsClicked(){
+        binding.lineWeightToolbarWrapper.oneX.setOnClickListener {
+            binding.lineWeightToolbarWrapper.lineWeightToolbar.visibility = View.GONE
+            binding.signifyToolbar.visibility = View.VISIBLE
         }
     }
 
