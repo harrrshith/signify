@@ -40,50 +40,54 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        setView()
+        initialScreenSetup()
     }
-
-    private fun setView(){
+    private fun initialScreenSetup(){
+        //initial screen contents are set here
         avdBtn = binding.avdButton.setAnimateResource(R.drawable.animated_vector_button_from)
         binding.avdButton.setOnClickListener {
-            isClicked = !isClicked
-            binding.avdButton.apply {
-                if(isClicked){
-                    binding.signifyOptions.also {view->
-                        view.visibility = View.VISIBLE
-                        view.animate()
-                            .setDuration(250)
-                            .translationY(0f)
-                            .alpha(1f)
-                            .setListener(object : AnimatorListenerAdapter(){
-                                override fun onAnimationEnd(
-                                    animation: Animator,
-                                    isReverse: Boolean
-                                ) {
-                                    super.onAnimationEnd(animation, false)//Animation was repeating so isReverse is false
-                                }
-                            })
+            isClicked = !isClicked // when clicked for the first time isClicked will be true
+            onAVDButtonClick(isClicked)
+            avdBtn.start()
+        }
+    }
 
-                    }
-                    avdBtn = binding.avdButton.setAnimateResource(R.drawable.animated_vector_button_from)
-                }else{
-                    binding.signifyOptions.also {view ->
-                        view.animate()
-                            .setDuration(250)
-                            .translationY(40f)
-                            .alpha(0.1f)
-                            .setListener(object : AnimatorListenerAdapter() {
+    private fun onAVDButtonClick(isClicked: Boolean){
+        binding.avdButton.apply {
+            if(isClicked){
+                binding.signifyOptions.also {view->
+                    view.visibility = View.VISIBLE
+                    view.animate()
+                        .setDuration(250)
+                        .translationY(0f)
+                        .alpha(1f)
+                        .setListener(object : AnimatorListenerAdapter(){
+                            override fun onAnimationEnd(
+                                animation: Animator,
+                                isReverse: Boolean
+                            ) {
+                                super.onAnimationEnd(animation, false)//Animation was repeating so isReverse is false
+                            }
+                        })
+
+                }
+                avdBtn = binding.avdButton.setAnimateResource(R.drawable.animated_vector_button_from)
+            }else{
+                binding.signifyOptions.also {view ->
+                    view.animate()
+                        .setDuration(250)
+                        .translationY(40f)
+                        .alpha(0.1f)
+                        .setListener(object : AnimatorListenerAdapter() {
                             override fun onAnimationEnd(animation: Animator) {
                                 super.onAnimationEnd(animation)
                                 view.visibility = View.GONE
                             }
                         })
 
-                    }
-                    avdBtn = binding.avdButton.setAnimateResource(R.drawable.animated_vector_button_to)
                 }
+                avdBtn = binding.avdButton.setAnimateResource(R.drawable.animated_vector_button_to)
             }
-            avdBtn.start()
         }
     }
 

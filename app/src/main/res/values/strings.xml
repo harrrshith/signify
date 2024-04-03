@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Signify</string>
     <string name="signify">signify</string>
+    <string name="one_x">1X</string>
+    <string name="two_x">2X</string>
+    <string name="five_x">5X</string>
+    <string name="seven_x">7X</string>
 </resources>
