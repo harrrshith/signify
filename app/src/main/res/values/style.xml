@@ -20,6 +20,12 @@
 
     <style name="text_style">
         <item name="android:textSize">18sp</item>
-        <item name="fontWeight">800</item>"
+        <item name="fontWeight">400</item>"
+    </style>
+
+    <style name="color_selector_style">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="cardCornerRadius">80dp</item>
     </style>
 </resources>

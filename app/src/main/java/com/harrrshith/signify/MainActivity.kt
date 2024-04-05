@@ -86,6 +86,7 @@ class MainActivity : AppCompatActivity() {
                             override fun onAnimationEnd(animation: Animator) {
                                 super.onAnimationEnd(animation)
                                 view.visibility = View.GONE
+                                initialAnimPosition()//this will reset the nested toolbar to their initial position
                             }
                         })
 
@@ -98,10 +99,10 @@ class MainActivity : AppCompatActivity() {
     private fun setOnSignifyToolBarListeners(){
         binding.lineWeightToolbarBtn.setOnClickListener {
             binding.signifyToolbar.visibility = View.GONE
-            binding.lineWeightToolbarWrapper.lineWeightToolbar.also {
-                it.visibility = View.VISIBLE
-                it.layoutParams.width = LayoutParams.MATCH_PARENT
-                it.animate()
+            binding.lineWeightToolbarWrapper.lineWeightToolbar.apply {
+                visibility = View.VISIBLE
+                layoutParams.width = LayoutParams.MATCH_PARENT
+                animate()
                     .setDuration(200)
                     .alpha(1f)
                     .translationX(0f)
@@ -113,12 +114,53 @@ class MainActivity : AppCompatActivity() {
             }
             onLineHeightOptionsClicked()
         }
+
+        binding.colorSelectorToolbarBtn.setOnClickListener {
+            binding.signifyToolbar.visibility = View.GONE
+            binding.colorSelectorToolbarWrapper.colorSelectorToolbar.apply {
+                visibility = View.VISIBLE
+                layoutParams.width = LayoutParams.MATCH_PARENT
+                animate()
+                    .setDuration(200)
+                    .alpha(1f)
+                    .translationX(0f)
+                    .setListener(object : AnimatorListenerAdapter(){
+                        override fun onAnimationEnd(animation: Animator, isReverse: Boolean) {
+                            super.onAnimationEnd(animation, false)
+                        }
+                    })
+            }
+        }
+    }
+
+    private fun initialAnimPosition(){
+        binding.lineWeightToolbarWrapper.lineWeightToolbar.apply {
+            visibility = View.GONE
+            translationX = (-80).thisToFloat()
+        }
+        binding.signifyToolbar.visibility = View.VISIBLE
     }
 
     private fun onLineHeightOptionsClicked(){
-        binding.lineWeightToolbarWrapper.oneX.setOnClickListener {
-            binding.lineWeightToolbarWrapper.lineWeightToolbar.visibility = View.GONE
-            binding.signifyToolbar.visibility = View.VISIBLE
+        val signatureView = binding.signatureView
+        isClicked = !isClicked
+        binding.lineWeightToolbarWrapper.apply {
+            oneX.setOnClickListener{
+                signatureView.setBrushSize(1f)
+                onAVDButtonClick(isClicked)
+            }
+            twoX.setOnClickListener{
+                signatureView.setBrushSize(2f)
+                onAVDButtonClick(isClicked)
+            }
+            fiveX.setOnClickListener{
+                signatureView.setBrushSize(5f)
+                onAVDButtonClick(isClicked)
+            }
+            sevenX.setOnClickListener {
+                signatureView.setBrushSize(7f)
+                onAVDButtonClick(isClicked)
+            }
         }
     }
 
@@ -132,4 +174,5 @@ class MainActivity : AppCompatActivity() {
         val scale = resources.displayMetrics.density
         return this * scale
     }
+
 }

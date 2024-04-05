@@ -74,6 +74,10 @@
                 android:id="@+id/line_weight_toolbar_wrapper"
                 layout="@layout/line_weight"/>
 
+            <include
+                android:id="@+id/color_selector_toolbar_wrapper"
+                layout="@layout/colors_select"/>
+
             <LinearLayout
                 android:id="@+id/signify_toolbar"
                 android:layout_width="match_parent"
@@ -83,6 +87,7 @@
                 android:gravity="center">
 
                 <View
+                    android:id="@+id/color_selector_toolbar_btn"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     style="@style/rounded_background"/>
