@@ -65,7 +65,7 @@
             android:layout_gravity="center"
             android:orientation="vertical"
             android:layout_marginHorizontal="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:translationY="80dp"
             android:visibility="gone"
             style="@style/rounded_rect">

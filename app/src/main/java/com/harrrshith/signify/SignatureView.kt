@@ -8,16 +8,18 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
+import android.util.Log
 import android.util.TypedValue
 import android.view.MotionEvent
 import android.view.View
+import androidx.core.content.ContextCompat
 
 class SignatureView(context: Context, attributeSet: AttributeSet): View(context, attributeSet) {
     private var drawPath: CustomPath? = null
     private var canvasBitmap: Bitmap? = null
     private var canvasPaint: Paint? = null
     private var drawPaint: Paint? = null
-    private var brushSize: Float = 0f
+    private var brushSize: Float = 2.625f //programmatically when 1f is applied this is the value we'll be getting
     private var mColor: Int = Color.BLACK
     private var mCanvas: Canvas? = null
     private var drawPaths = ArrayList<CustomPath>()
@@ -92,10 +94,11 @@ class SignatureView(context: Context, attributeSet: AttributeSet): View(context,
 
     fun setBrushSize(size: Float){
         brushSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, size, resources.displayMetrics)
+        Log.e("Reponse", "$brushSize")
     }
 
-    fun setPenColor(newColor: String){
-        mColor = Color.parseColor(newColor)
+    fun setBrushColor(newColor: Int){
+        mColor = newColor
         drawPaint!!.color = mColor
     }
 

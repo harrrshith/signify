@@ -17,6 +17,7 @@ import android.view.animation.TranslateAnimation
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.animation.AnimatableView.Listener
@@ -130,6 +131,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     })
             }
+            onColorSelectorClicked()
         }
     }
 
@@ -163,6 +165,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun onColorSelectorClicked(){
+        val signatureView = binding.signatureView
+        val context = this
+        binding.colorSelectorToolbarWrapper.apply {
+            firstColor.setOnClickListener{
+                signatureView.settingBrushColor(ContextCompat.getColor(context, R.color.black2))
+            }
+            secondColor.setOnClickListener{
+                signatureView.settingBrushColor(ContextCompat.getColor(context, R.color.red))
+            }
+            thirdColor.setOnClickListener{
+                signatureView.settingBrushColor(ContextCompat.getColor(context, R.color.green))
+            }
+            fourthColor.setOnClickListener{
+                signatureView.settingBrushColor(ContextCompat.getColor(context, R.color.blue))
+            }
+        }
+    }
+
     private fun ImageButton.setAnimateResource(drawableId: Int): AnimatedVectorDrawable{
         this.apply {
             setBackgroundResource(drawableId)
@@ -177,6 +198,13 @@ class MainActivity : AppCompatActivity() {
     private fun SignatureView.settingBrushSize(brushSize: Float){
         isClicked = !isClicked
         this.setBrushSize(brushSize)
+        onAVDButtonClick(isClicked)
+    }
+
+    private fun SignatureView.settingBrushColor(color: Int){
+        isClicked = !isClicked
+        this.setBrushColor(color)
+        binding.colorSelectorToolbarBtn.setCardBackgroundColor(color)
         onAVDButtonClick(isClicked)
     }
 
