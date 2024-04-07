@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.colorSelectorToolbarBtn.setOnClickListener {
             binding.signifyToolbar.visibility = View.GONE
-            binding.colorSelectorToolbarWrapper.colorSelectorToolbar.apply {
+            binding.colorSelectorToolbarWrapper.colorSelectorToolbar .apply {
                 visibility = View.VISIBLE
                 layoutParams.width = LayoutParams.MATCH_PARENT
                 animate()
@@ -138,28 +138,27 @@ class MainActivity : AppCompatActivity() {
             visibility = View.GONE
             translationX = (-80).thisToFloat()
         }
+        binding.colorSelectorToolbarWrapper.colorSelectorToolbar.apply {
+            visibility = View.GONE
+            translationX = (-80).thisToFloat()
+        }
         binding.signifyToolbar.visibility = View.VISIBLE
     }
 
     private fun onLineHeightOptionsClicked(){
         val signatureView = binding.signatureView
-        isClicked = !isClicked
         binding.lineWeightToolbarWrapper.apply {
             oneX.setOnClickListener{
-                signatureView.setBrushSize(1f)
-                onAVDButtonClick(isClicked)
+                signatureView.settingBrushSize(1f)
             }
             twoX.setOnClickListener{
-                signatureView.setBrushSize(2f)
-                onAVDButtonClick(isClicked)
+                signatureView.settingBrushSize(2f)
             }
             fiveX.setOnClickListener{
-                signatureView.setBrushSize(5f)
-                onAVDButtonClick(isClicked)
+                signatureView.settingBrushSize(5f)
             }
             sevenX.setOnClickListener {
-                signatureView.setBrushSize(7f)
-                onAVDButtonClick(isClicked)
+                signatureView.settingBrushSize(7f)
             }
         }
     }
@@ -173,6 +172,12 @@ class MainActivity : AppCompatActivity() {
     private fun Int.thisToFloat(): Float {
         val scale = resources.displayMetrics.density
         return this * scale
+    }
+
+    private fun SignatureView.settingBrushSize(brushSize: Float){
+        isClicked = !isClicked
+        this.setBrushSize(brushSize)
+        onAVDButtonClick(isClicked)
     }
 
 }

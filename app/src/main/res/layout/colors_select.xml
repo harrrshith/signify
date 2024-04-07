@@ -13,7 +13,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/first_color"
         style="@style/color_selector_style"
-        app:cardBackgroundColor="@android:color/black"/>
+        app:cardBackgroundColor="@color/black2"/>
 
     <View
         android:layout_width="0dp"
@@ -23,7 +23,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/second_color"
         style="@style/color_selector_style"
-        app:cardBackgroundColor="@android:color/holo_red_dark"/>
+        app:cardBackgroundColor="@color/red"/>
 
     <View
         android:layout_width="0dp"
@@ -33,7 +33,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/third_color"
         style="@style/color_selector_style"
-        app:cardBackgroundColor="@android:color/holo_green_light"/>
+        app:cardBackgroundColor="@color/green"/>
 
     <View
         android:layout_width="0dp"
@@ -43,6 +43,6 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/fourth_color"
         style="@style/color_selector_style"
-        app:cardBackgroundColor="@android:color/holo_blue_dark"/>
+        app:cardBackgroundColor="@color/blue"/>
 
 </LinearLayout>
