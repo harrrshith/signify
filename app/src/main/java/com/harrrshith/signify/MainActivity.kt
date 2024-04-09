@@ -3,10 +3,13 @@ package com.harrrshith.signify
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.app.ActionBar.LayoutParams
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.icu.text.ListFormatter.Width
 import android.opengl.Visibility
 import android.os.Bundle
+import android.os.Environment
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
@@ -20,10 +23,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.drawToBitmap
 import com.google.android.material.animation.AnimatableView.Listener
 import com.harrrshith.signify.databinding.ActivityMainBinding
 import com.harrrshith.signify.util.seNavigationBarColor
 import com.harrrshith.signify.util.setStatusBarColor
+import java.io.File
+import java.io.FileOutputStream
+import java.util.Date
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -133,6 +140,10 @@ class MainActivity : AppCompatActivity() {
             }
             onColorSelectorClicked()
         }
+
+        binding.saveBtn.setOnClickListener {
+            saveBitMapAsImage(binding.signatureView)
+        }
     }
 
     private fun initialAnimPosition(){
@@ -206,6 +217,23 @@ class MainActivity : AppCompatActivity() {
         this.setBrushColor(color)
         binding.colorSelectorToolbarBtn.setCardBackgroundColor(color)
         onAVDButtonClick(isClicked)
+    }
+
+    private fun saveBitMapAsImage(view: View){
+        val dateNow = Date()
+        val dateFormat = android.text.format.DateFormat.format("dd-MM-yyy_hh:mm:ss", dateNow)
+        val imageBitmap = view.drawToBitmap(Bitmap.Config.ARGB_8888)
+        try{
+            val imageFile = File(this.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "screenshot-${dateFormat}.png")
+            val outPutStream = FileOutputStream(imageFile)
+            val quality = 100
+            imageBitmap.compress(Bitmap.CompressFormat.PNG, quality, outPutStream)
+            outPutStream.flush()
+            outPutStream.close()
+            Log.e("Response", "$imageFile")
+        }catch (exception: Throwable){
+            exception.printStackTrace()
+        }
     }
 
 }

@@ -92,28 +92,45 @@
                     style="@style/color_selector_style"/>
 
                 <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="8dp"/>
+
+                <View
                     android:id="@+id/line_weight_toolbar_btn"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:background="@drawable/ic_line_weight"
-                    android:layout_marginHorizontal="16dp"/>
+                    android:background="@drawable/ic_line_weight"/>
 
                 <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="8dp"/>
+
+                <View
+                    android:id="@+id/save_btn"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginEnd="8dp"
                     android:background="@drawable/ic_save"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="8dp"/>
 
                 <View
                     android:layout_width="2dp"
                     android:layout_height="match_parent"
-                    android:layout_marginVertical="2dp"
                     android:background="@android:color/darker_gray" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="8dp"/>
 
                 <View
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginStart="8dp"
                     android:background="@drawable/ic_delete"/>
 
             </LinearLayout>

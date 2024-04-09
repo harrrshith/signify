@@ -50,6 +50,7 @@ class SignatureView(context: Context, attributeSet: AttributeSet): View(context,
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+        canvas.drawColor(Color.WHITE)
         canvas.drawBitmap(canvasBitmap!!, 0f, 0f, canvasPaint)
         for (path in drawPaths) {
             drawPaint!!.strokeWidth = path.brushThickness
