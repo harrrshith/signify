@@ -103,6 +103,13 @@ class SignatureView(context: Context, attributeSet: AttributeSet): View(context,
         drawPaint!!.color = mColor
     }
 
+    fun onUndoClicked(){
+        if(undoDrawPaths.size > 0){
+            undoDrawPaths.add(drawPaths.removeAt(drawPaths.size - 1))
+            invalidate()
+        }
+    }
+
     internal inner class CustomPath(var color: Int, var brushThickness: Float): Path()
 }
 

@@ -13,11 +13,16 @@ import android.os.Environment
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.Animation.AnimationListener
 import android.view.animation.TranslateAnimation
 import android.widget.ImageButton
+import android.widget.Toast
+import android.widget.Toolbar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -51,9 +56,31 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         //everytime the isClicked variable becomes false that is when I close the toolbar I need to manually make all the animations to reset to its original position.
+        binding.toolBar.inflateMenu(R.menu.menu)
+        binding.toolBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.undo_btn  -> {
+                    Toast.makeText(this, "Hello", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> false
+            }
+        }
         initialScreenSetup()
         setOnSignifyToolBarListeners()
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.undo_btn -> {
+                Toast.makeText(this@MainActivity, "Hello", Toast.LENGTH_LONG).show()
+                true
+            }
+
+            else -> {
+                false
+            }            }
+        }
     private fun initialScreenSetup(){
         //initial screen contents are set here
         avdBtn = binding.avdButton.setAnimateResource(R.drawable.animated_vector_button_from)

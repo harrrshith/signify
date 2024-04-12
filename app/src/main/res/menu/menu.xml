@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:title="One"
-        android:icon="@drawable/baseline_keyboard_arrow_up_24"/>
-    <item
-        android:title="One"
-        android:icon="@drawable/baseline_keyboard_arrow_up_24"/>
-    <item
-        android:title="One"
-        android:icon="@drawable/baseline_keyboard_arrow_up_24"/>
-    <item
-        android:title="One"
-        android:icon="@drawable/baseline_keyboard_arrow_up_24"/>
+        android:id="@+id/undo_btn"
+        android:title="@string/undo"
+        android:icon="@drawable/ic_undo"
+        app:showAsAction="always" />
 </menu>
