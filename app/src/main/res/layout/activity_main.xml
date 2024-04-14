@@ -129,6 +129,7 @@
                     android:layout_marginHorizontal="8dp"/>
 
                 <View
+                    android:id="@+id/delete_btn"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:background="@drawable/ic_delete"/>

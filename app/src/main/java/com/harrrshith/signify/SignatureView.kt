@@ -104,8 +104,15 @@ class SignatureView(context: Context, attributeSet: AttributeSet): View(context,
     }
 
     fun onUndoClicked(){
-        if(undoDrawPaths.size > 0){
+        if(drawPaths.size > 0){
             undoDrawPaths.add(drawPaths.removeAt(drawPaths.size - 1))
+            invalidate()
+        }
+    }
+
+    fun onDeleteClicked(){
+        if (drawPaths.size > 0){
+            drawPaths.clear()
             invalidate()
         }
     }

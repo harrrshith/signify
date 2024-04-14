@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         binding.toolBar.setOnMenuItemClickListener { menuItem ->
             when(menuItem.itemId){
                 R.id.undo_btn  -> {
-                    Toast.makeText(this, "Hello", Toast.LENGTH_SHORT).show()
+                    binding.signatureView.onUndoClicked()
                     true
                 }
                 else -> false
@@ -70,17 +70,6 @@ class MainActivity : AppCompatActivity() {
         setOnSignifyToolBarListeners()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.undo_btn -> {
-                Toast.makeText(this@MainActivity, "Hello", Toast.LENGTH_LONG).show()
-                true
-            }
-
-            else -> {
-                false
-            }            }
-        }
     private fun initialScreenSetup(){
         //initial screen contents are set here
         avdBtn = binding.avdButton.setAnimateResource(R.drawable.animated_vector_button_from)
@@ -170,6 +159,14 @@ class MainActivity : AppCompatActivity() {
 
         binding.saveBtn.setOnClickListener {
             saveBitMapAsImage(binding.signatureView)
+            onAVDButtonClick(!isClicked)
+            avdBtn.start()
+        }
+
+        binding.deleteBtn.setOnClickListener {
+            binding.signatureView.onDeleteClicked()
+            onAVDButtonClick(!isClicked)
+            avdBtn.start()
         }
     }
 
